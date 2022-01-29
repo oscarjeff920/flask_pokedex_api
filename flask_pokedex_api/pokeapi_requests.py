@@ -22,7 +22,9 @@ def get_pokedata(poke_name: str) -> typing.Dict:
     return PokedexBase(
         name=poke_name,
         description=english_description(details.get("flavor_text_entries", {})),
-        habitat=details.get("habitat", {}).get("name"),
+        habitat=details.get("habitat").get("name")
+        if details.get("habitat") is not None
+        else "Unknown",
         isLegendary=details.get("is_legendary", {}),
     ).dict()
 
