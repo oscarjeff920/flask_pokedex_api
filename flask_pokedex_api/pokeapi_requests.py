@@ -6,7 +6,7 @@ from flask_pokedex_api.configs.pokeapi_config import get_pokeapi_ip
 from flask_pokedex_api.pokedex_schema import PokedexBase
 
 
-def get_pokedata(poke_name: str) -> PokedexBase:
+def get_pokedata(poke_name: str) -> typing.Dict:
     ip = get_pokeapi_ip().POKEAPI_IP
 
     try:
@@ -24,15 +24,12 @@ def get_pokedata(poke_name: str) -> PokedexBase:
         description=english_description(details.get("flavor_text_entries", {})),
         habitat=details.get("habitat", {}).get("name"),
         isLegendary=details.get("is_legendary", {}),
-    )
+    ).dict()
 
 
 def english_description(descriptions: typing.List) -> str:
     for entry in descriptions:
-        for lang in entry:
-            if entry.get("language").get("name") == "en":
-                return (
-                    entry.get("flavor_text").replace("\n", " ").replace("\u000c", " ")
-                )
+        if entry.get("language").get("name") == "en":
+            return entry.get("flavor_text").replace("\n", " ").replace("\u000c", " ")
     else:
         return "*NOTFOUND*"

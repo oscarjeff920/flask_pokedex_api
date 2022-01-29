@@ -16,9 +16,15 @@ class Home(Resource):
 
 
 class PokeRequest(Resource):
-    def get(self, pokemon_name: str) -> PokedexBase:
-        return get_pokedata(poke_name=pokemon_name)
+    def get(self, poke_name: str) -> typing.Dict:
+        return get_pokedata(poke_name=poke_name)
+
+
+class PokedexHome(Resource):
+    def get(self) -> str:
+        return "enter a pokemon name into the url after 'pokedex/"
 
 
 api.add_resource(Home, "/")
-api.add_resource(PokeRequest, "/pokedex/<string:pokemon_name>")
+api.add_resource(PokedexHome, "/pokedex")
+api.add_resource(PokeRequest, "/pokedex/<string:poke_name>")
