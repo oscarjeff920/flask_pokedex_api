@@ -26,5 +26,7 @@ class PokedexHome(Resource):
 
 
 api.add_resource(Home, "/")
-api.add_resource(PokedexHome, "/pokedex")
-api.add_resource(PokeRequest, "/pokedex/<string:poke_name>")
+api.add_resource(PokedexHome, "/pokedex", "/pokedex/")
+api.add_resource(
+    PokeRequest, "/pokedex/<string:poke_name>", "/pokedex/<string:poke_name>/"
+)
