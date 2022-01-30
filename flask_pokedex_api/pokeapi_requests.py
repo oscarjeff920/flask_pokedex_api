@@ -11,7 +11,9 @@ def get_pokedata(poke_name: str) -> typing.Dict:
 
     try:
         response = requests.get("{}{}".format(ip, poke_name.lower()))
-        details = response.json()
+        if response.status_code == 404:
+            return {"HTTP Error: 404. Pokemon Not Found": "Check Spelling"}
+        response.raise_for_status()
     except requests.exceptions.HTTPError as httperr:
         raise httperr
     except requests.exceptions.ConnectionError as conerr:
@@ -19,6 +21,7 @@ def get_pokedata(poke_name: str) -> typing.Dict:
     except requests.exceptions.RequestException as reqerr:
         raise reqerr
 
+    details = response.json()
     return PokedexBase(
         name=poke_name,
         description=english_description(details.get("flavor_text_entries", {})),

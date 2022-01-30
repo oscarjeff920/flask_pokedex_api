@@ -4,7 +4,6 @@ from flask import Flask
 from flask_restful import Api, Resource
 
 from flask_pokedex_api.pokeapi_requests import get_pokedata
-from flask_pokedex_api.pokedex_schema import PokedexBase
 
 app = Flask(__name__)
 api = Api(app)
