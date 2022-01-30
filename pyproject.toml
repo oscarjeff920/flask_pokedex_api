@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "flask_pokedex_api"
 version = "0.1.0"
-description = "A flask built api that retrieves data from the pokeapi.co api to create a pokedex search"
+description =  "flask built api that retrieves data from the pokeapi.co api to create a pokedex search"
 authors = ["Oscar Jeffery <oscarjjeff920@gmail.com>"]
 
 [tool.poetry.dependencies]
