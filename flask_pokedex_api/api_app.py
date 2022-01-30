@@ -11,7 +11,7 @@ api = Api(app)
 
 class Home(Resource):
     def get(self) -> typing.Dict:
-        return dict(about="An API to receive pokemon data from pokeapi.co")
+        return dict(about="An API to receive pokemon data from 'pokeapi.co'")
 
 
 class PokeRequest(Resource):
@@ -21,7 +21,7 @@ class PokeRequest(Resource):
 
 class PokedexHome(Resource):
     def get(self) -> str:
-        return "enter a pokemon name into the url after 'pokedex/"
+        return "enter a pokemon name into the url after 'pokedex/'"
 
 
 api.add_resource(Home, "/")
